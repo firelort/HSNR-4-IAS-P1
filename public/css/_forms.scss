@@ -1,0 +1,9 @@
+.role-selector {
+  background: lighten($sidebar-body-bgcolor, 10%);
+  padding: 1rem 1.2rem;
+  border: none;
+  width: 100%;
+  color: $sidebar-body-color;
+  font-size: 1.4rem;
+  border-radius: .6rem;
+}

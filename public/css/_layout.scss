@@ -1,5 +1,6 @@
 $layout-header-color: #fff;
 $layout-header-bgcolor: #145195;
+$sidebar-body-color: #acbbc1;
 $sidebar-body-bgcolor: #222d32;
 
 $layout-header-height: 40px;
@@ -21,6 +22,11 @@ $sidebar-width: 23rem;
 
 .sidebar-body {
   background: $sidebar-body-bgcolor;
+  padding-top: 1.5rem;
+}
+
+.content-body {
+  padding: 1.5rem
 }
 
 .layout-wrapper {
