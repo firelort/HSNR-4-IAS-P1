@@ -3,10 +3,33 @@ import os
 
 import cherrypy
 
+
 class Database(object):
 
     def __init__(self):
         self.path_s = os.path.join(cherrypy.Application.currentDir, "data")
+
+    # -------------------------------------------------------------------------
+
+    def getExhibitions(self):
+        return self.readJSONFile("exhibitions.json")
+
+    def getExhibitionByID(self, exhibitionID):
+        exhibitions = self.readJSONFile("exhibitions.json")
+        return self.getEntryFromList(exhibitions, exhibitionID)
+
+    def addExhibition(self, exhibition):
+        newID = self.addEntry(exhibition, self.getExhibitions(), "exhibitions.json")
+        return newID
+
+    # -------------------------------------------------------------------------
+
+    def addEntry(self, entry, entryList, filename):
+        newId = self.getMaxId(entryList) + 1
+        entry['entryid'] = newId
+        entryList[newId] = entry
+        self.writeJSONFile(filename, entryList)
+        return newId
 
     def readJSONFile(self, filename):
         try:

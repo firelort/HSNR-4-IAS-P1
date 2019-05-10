@@ -29,10 +29,13 @@
                 <option value="3">Besucher</option>
             </select>
         </div>
+
+        <div class="sidebar-title">Navigation</div>
+        <ul class="sidebar-nav"></ul>
+
     </section>
 
     <section class="content-body">
-        <h2>Willkommen</h2>
     </section>
 
 
@@ -42,6 +45,25 @@
 <script src="js/evs.js"></script>
 <script src="js/tco.js"></script>
 <script src="js/tmg.js"></script>
-<script src="js/main.js"></script>
+<script src="js/syn.js"></script>
+<script src="js/view.js"></script>
+
+
+<script src="js/sidebar.js"></script>
+<script src="js/app.js"></script>
+
+<script type="text/javascript">
+    var templateManager;
+    var eventService;
+    window.onload = function () {
+
+        templateManager = new TemplateManager();
+        templateManager.init();
+        eventService = new EventService();
+        APPUTIL.es_o = eventService;
+        new Application();
+
+    }
+</script>
 </body>
 </html>

@@ -7,3 +7,24 @@
   font-size: 2.1rem;
 }
 
+.sidebar-title {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  color: rgba(172, 187, 193, 0.8);
+  padding: 1rem 1.5rem 1rem;
+  margin-top: 1rem;
+  background: darken($sidebar-body-bgcolor, 5%);
+}
+
+
+.sidebar-nav {
+  padding: 1rem 0;
+
+  a {
+    border-left: 3px solid transparent;
+    padding: .7rem 1.5rem .7rem 1.2rem;
+    color: $sidebar-body-color;
+  }
+
+}
+

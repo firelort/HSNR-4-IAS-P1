@@ -7,7 +7,7 @@ import sys
 
 import cherrypy
 
-from app import templates
+from app import templates, exhibition
 
 
 def errorJsonResponse(traceback=None, message=None, status=None, version=None):
@@ -55,6 +55,12 @@ def main():
     cherrypy.tree.mount(
         templates.Template(),
         '/templates',
+        {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
+    )
+
+    cherrypy.tree.mount(
+        exhibition.Exhibition(),
+        '/exhibition',
         {'/': {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}}
     )
 
