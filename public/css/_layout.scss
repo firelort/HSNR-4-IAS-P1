@@ -1,0 +1,31 @@
+$layout-header-color: #fff;
+$layout-header-bgcolor: #145195;
+$sidebar-body-bgcolor: #222d32;
+
+$layout-header-height: 40px;
+$sidebar-width: 23rem;
+
+
+.content-header, .sidebar-header {
+  line-height: 0;
+  padding: ($layout-header-height / 2) 1.5rem;
+}
+
+.content-header {
+  background: $layout-header-bgcolor;
+}
+
+.sidebar-header {
+  background: darken($layout-header-bgcolor, 5%);
+}
+
+.sidebar-body {
+  background: $sidebar-body-bgcolor;
+}
+
+.layout-wrapper {
+  height: 100%;
+  display: grid;
+  grid-template-rows: $layout-header-height 1fr;
+  grid-template-columns: $sidebar-width 1fr;
+}
