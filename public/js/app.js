@@ -7,7 +7,7 @@ class Application extends View {
         eventService.subscribe(this, "templates.failed");
         eventService.subscribe(this, "app.cmd");
         this.sidebar = new Sidebar(".sidebar-body", "layout/sidebar");
-        //this.content = new Content('content-body');
+        this.content = new Content('.content-body', 'layout/content');
 
     }
 
