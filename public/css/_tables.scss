@@ -1,0 +1,24 @@
+.table {
+  width: 100%;
+  border-spacing: 0;
+
+  td, th {
+    padding: 7px;
+  }
+}
+
+.table-striped {
+  tbody tr:nth-child(odd) {
+    background: darken(#fff, 5%);
+
+    &.selected {
+      background: darken(#c2ecff, 5%);
+    }
+  }
+}
+
+.selectable-row {
+  &.selected {
+    background: #c2ecff;
+  }
+}
