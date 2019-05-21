@@ -29,13 +29,28 @@ class View {
     }
 
     handleEvents(event) {
+        let lookUpNode = event.target;
+        let selectorFound = false;
+        let reachedViewNode = false;
+        let viewNode = document.querySelector(this.elementSelector);
         if (this.listeners[event.type]) {
-            for (let selector in this.listeners[event.type]) {
-                let nodes = document.querySelectorAll(this.elementSelector + ' ' + selector);
-                if ([].indexOf.call(nodes, event.target) >= 0) {
-                    this.listeners[event.type][selector](event);
+            while (!selectorFound && !reachedViewNode) {
+                for (let selector in this.listeners[event.type]) {
+                    let nodes = document.querySelectorAll(this.elementSelector + ' ' + selector);
+                    if ([].indexOf.call(nodes, lookUpNode) >= 0) {
+
+                        this.listeners[event.type][selector](event, lookUpNode);
+                        selectorFound = true;
+                    }
+                }
+                if (viewNode == lookUpNode) {
+                    reachedViewNode = true;
+                } else {
+                    lookUpNode = lookUpNode.parentElement;
+
                 }
             }
+
 
         }
     }
