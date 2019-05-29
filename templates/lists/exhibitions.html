@@ -1,0 +1,17 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Messen</th>
+    </tr>
+    </thead>
+    <tbody>
+    @let entry;@
+    @let i;@
+    @for i = 0; i < context.length; i++@
+    @entry = context[i];@
+    <tr class="selectable-row">
+        <td>#entry#</td>
+    </tr>
+    @endfor@
+    </tbody>
+</table>

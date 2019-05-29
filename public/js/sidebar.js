@@ -5,6 +5,10 @@ class Sidebar extends View {
 
         this.addEventListener('change', '#role', (e) => {
             eventService.publish('user.changed', e.target.options[e.target.selectedIndex].value);
+            eventService.publish('app.load', {
+                module: 'indexUser',
+                type: e.target.options[e.target.selectedIndex].value
+            })
         });
 
     }
