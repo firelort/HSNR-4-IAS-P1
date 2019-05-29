@@ -38,7 +38,6 @@ class View {
                 for (let selector in this.listeners[event.type]) {
                     let nodes = document.querySelectorAll(this.elementSelector + ' ' + selector);
                     if ([].indexOf.call(nodes, lookUpNode) >= 0) {
-
                         this.listeners[event.type][selector](event, lookUpNode);
                         selectorFound = true;
                     }
@@ -72,4 +71,11 @@ class View {
         this.listeners[event][selector] = callable;
 
     }
+
+    entryAction() {
+    };
+
+    exitAction() {
+    }
+
 }
