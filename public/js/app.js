@@ -2,6 +2,7 @@ class Application extends View {
 
     constructor() {
         super();
+        this.elementSelector = 'body';
         // Registrieren zum Empfang von Nachrichten
         eventService.subscribe(this, "templates.loaded");
         eventService.subscribe(this, "templates.failed");
@@ -15,6 +16,12 @@ class Application extends View {
 
     }
 
+    /**
+     *
+     * @param self Application
+     * @param message String
+     * @param data mixed
+     */
     notify(self, message, data) {
         /**
          * from state.exit
@@ -35,6 +42,13 @@ class Application extends View {
                 ];
                 self.sidebar.render(nav, '.sidebar-nav');
                 this.content.render(['ab', 'cd']);
+
+                let hd = new HallDesigner(document.getElementById('halls'));
+                self.addEventListener('mousemove', '#halls', (event, target) => {
+                    // todo fix offset??
+                    console.log(event);
+                    hd.context.fillRect(event.clientX, event.clientY, 10, 10);
+                });
                 break;
 
             case 'app.load': {
