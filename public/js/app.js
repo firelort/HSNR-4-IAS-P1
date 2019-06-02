@@ -47,7 +47,9 @@ class Application extends View {
                 self.addEventListener('mousemove', '#halls', (event, target) => {
                     // todo fix offset??
                     console.log(event);
-                    hd.context.fillRect(event.clientX, event.clientY, 10, 10);
+                    let mouse = hd.getMouse(event);
+                    console.log(mouse);
+                    hd.context.fillRect(mouse.x, mouse.y, 10, 10);
                 });
                 break;
 
