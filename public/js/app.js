@@ -9,12 +9,22 @@ class Application extends View {
         eventService.subscribe(this, "app.load");
         this.sidebar = new Sidebar(".sidebar-body", "layout/sidebar");
         // this.content = new Content('.content-body', 'layout/content');
-        this.content = new ExhibitionList('.content-body', 'lists/exhibitions');
+        // this.content = new ExhibitionList('.content-body', 'lists/exhibitions');
+        this.content = new ExhibitionList('.content-body', 'exhibitions/hallReservation');
 
 
     }
 
     notify(self, message, data) {
+        /**
+         * from state.exit
+         * transition.actions
+         * set state = tostate
+         * tostate.entry
+         *
+         */
+
+        console.log(data);
         switch (message) {
             case "templates.failed":
                 alert("Vorlagen konnten nicht geladen werden.");
