@@ -49,7 +49,10 @@ class Application extends View {
                     console.log(event);
                     let mouse = hd.getMouse(event);
                     console.log(mouse);
-                    hd.context.fillRect(mouse.x, mouse.y, 10, 10);
+                    hd.draw();
+                    let x = Math.round(mouse.x / 40) * 40 - 5;
+                    let y = Math.round(mouse.y / 40) * 40 - 5;
+                    hd.context.fillRect(x, y, 10, 10);
                 });
                 break;
 
