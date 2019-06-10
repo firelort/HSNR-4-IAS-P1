@@ -154,7 +154,12 @@ class HallDesigner {
                 // preview setzen und dragStart löschen
                 if (this.dragStart.x !== this.anchor.x && this.dragStart.y !== this.anchor.y) {
                     this.wasDragging = true;
-                    this.addShape(new Shape(this.dragStart.x + 6, this.dragStart.y + 6, this.anchor.x - this.dragStart.x - 1, this.anchor.y - this.dragStart.y - 1));
+                    let x, y, w, h;
+                    x = Math.min(this.dragStart.x, this.anchor.x) + 6;
+                    y = Math.min(this.dragStart.y, this.anchor.y) + 6;
+                    w = Math.abs(this.anchor.x - this.dragStart.x) - 1;
+                    h = Math.abs(this.anchor.y - this.dragStart.y) - 1;
+                    this.addShape(new Shape(x, y, w, h));
                 } else {
                     this.wasDragging = false;
                 }
