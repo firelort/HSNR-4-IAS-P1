@@ -66,7 +66,7 @@ Dem Messeveranstalter stehen folgenden Interaktionen zur Verfügung:
     - Halle anlegen
 - Messe anlegen
 
-STATECHART TODO
+![Statechart Veranstalter](dokuImg/stateChart_organization.png "Statechart Veranstalter")
 
 Die Navigationsübersicht sieht auf Desktop wie folgt aus:
 
@@ -201,7 +201,7 @@ Dem Austeller stehen folgenden Interaktionen zur Verfügung:
     - Übersicht über Buchungen dieser Messe
     - Zurück
 
-STATECHART TODO
+![Statechart Aussteller](dokuImg/stateChart_exhibitor.png "Statechart Aussteller")
 
 Die Navigation sieht wie folgt aus:
 
