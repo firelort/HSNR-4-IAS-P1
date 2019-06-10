@@ -120,7 +120,11 @@ class Request extends APPUTIL.Requester_cl {
         let options = {
             method: "POST",
             cache: "no-cache",
-            body: data
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
         };
 
         fetch(path, options)
@@ -147,7 +151,11 @@ class Request extends APPUTIL.Requester_cl {
         let options = {
             method: "PUT",
             cache: "no-cache",
-            body: data
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
         };
 
         fetch(path, options)

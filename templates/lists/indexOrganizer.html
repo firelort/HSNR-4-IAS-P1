@@ -1,1 +1,19 @@
 <h1>Willkommen Messeveranstalter</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Messen</th>
+    </tr>
+    </thead>
+    <tbody>
+    @let entry;@
+    @let i;@
+    @let keys = Object.keys(context);@
+    @for i = 0; i < keys.length; i++@
+    @entry = context[keys[i]];@
+    <tr data-id="#entry.entryid#" class="selectable-row">
+        <td>#entry.name#</td>
+    </tr>
+    @endfor@
+    </tbody>
+</table>

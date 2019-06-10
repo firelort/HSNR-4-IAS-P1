@@ -1,2 +1,13 @@
 <h1>#context.name#</h1>
 <canvas id="halls" width="801" height="441"></canvas>
+
+@if app.userID == User.ORGANIZER@
+<div class="button-group">
+    <button id="free" class="btn">Freigeben</button>
+    |
+    <button id="accept" class="btn">Reservierung annehmen</button>
+    <button id="decline" class="btn">Reservierung ablehnen</button>
+    |
+    <button id="save" class="btn">Speichern</button>
+</div>
+@endif;@

@@ -8,6 +8,7 @@ class Application extends View {
         eventService.subscribe(this, "templates.failed");
         eventService.subscribe(this, "app.cmd");
         eventService.subscribe(this, "app.load");
+        this.userID = User.GUEST;
         this.sidebar = new Sidebar(".sidebar-body", "layout/sidebar");
         // this.content = new Content('.content-body', 'layout/content');
         // this.content = new ExhibitionList('.content-body', 'lists/exhibitions');
@@ -76,6 +77,8 @@ class Application extends View {
                                 break;
 
                         }
+
+                        this.userID = parseInt(data.type);
 
                         //self.content.render();
                         break;

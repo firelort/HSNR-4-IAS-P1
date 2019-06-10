@@ -35,8 +35,6 @@ class Database(object):
         halls = self.readJSONFile("halls.json")
         filtered = {}
         for key, value in halls.items():
-            print(value['exhibitionID'])
-            print(exhibitionID)
             if int(value['exhibitionID']) == int(exhibitionID):
                 filtered[key] = value
         return filtered
@@ -44,6 +42,10 @@ class Database(object):
 
     def addHall(self, hall):
         newID = self.addEntry(hall, self.getHalls(), "halls.json")
+        return newID
+
+    def editHall(self, hall):
+        newID = self.editEntry(hall, self.getHalls(), "halls.json")
         return newID
 
     # -------------------------------------------------------------------------
@@ -54,6 +56,11 @@ class Database(object):
         entryList[newId] = entry
         self.writeJSONFile(filename, entryList)
         return newId
+
+    def editEntry(self, entry, entryList, filename):
+        entryList[entry['entryid']] = entry
+        self.writeJSONFile(filename, entryList)
+        return entry['entryid']
 
     def readJSONFile(self, filename):
         try:

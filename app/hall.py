@@ -25,3 +25,12 @@ class Hall(object):
                 raise cherrypy.HTTPError(404, 'Die Halle wurde nicht gefunden.')
             else:
                 return hall
+
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def PUT(self):
+
+        try:
+            return {"entryid": self.database.editHall(cherrypy.request.json)}
+        except:
+            raise cherrypy.HTTPError(400, 'Die Anfrage enthält nicht das korrekte Format')
