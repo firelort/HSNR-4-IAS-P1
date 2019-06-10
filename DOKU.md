@@ -79,6 +79,8 @@ und nicht die Annahme treffen, dass ein Login notwendig für sie ist. Der Login 
 Bei falschen Logininformationen wird der Nutzer hingewiesen, dass mit den gegeben Logininformationen ein Login nicht möglich ist.
 Ein neuer Login, kann nur durch einen Menschen der Gruppe Messeveranstalter angelegt werden.
 
+![Statechart Login](dokuImg/stateChart_login.png "Statechart Login")
+
 **Desktop:**
 
 ![Wireframe Login](dokuImg/wireframe_login.svg "Wireframe Login")
