@@ -24,6 +24,23 @@ class Database(object):
 
     # -------------------------------------------------------------------------
 
+    def getHalls(self):
+        return self.readJSONFile("halls.json")
+
+    def getHallByID(self, hallID):
+        hall = self.readJSONFile("halls.json")
+        return self.getEntryFromList(hall, hallID)
+
+    def getHallByExhibitionID(self, exhibitionID):
+        halls = self.readJSONFile("halls.json")
+        return [x for x in halls if x['exhibitionID'] == exhibitionID]
+
+    def addHall(self, hall):
+        newID = self.addEntry(hall, self.getHalls(), "halls.json")
+        return newID
+
+    # -------------------------------------------------------------------------
+
     def addEntry(self, entry, entryList, filename):
         newId = self.getMaxId(entryList) + 1
         entry['entryid'] = newId
