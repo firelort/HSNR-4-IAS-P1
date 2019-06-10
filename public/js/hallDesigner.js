@@ -20,7 +20,9 @@ class Shape {
             (this.y <= mouseY) && (this.y + this.h >= mouseY);
     }
 
-    overlaps(shape) {
+    overlaps(otherShape) {
+        return this.x < otherShape.x + otherShape.w && this.x + this.w > otherShape.x && this.y < otherShape.y + otherShape.h && this.y + this.h > otherShape.y;
+
 
     }
 }
@@ -159,7 +161,12 @@ class HallDesigner {
                     y = Math.min(this.dragStart.y, this.anchor.y) + 6;
                     w = Math.abs(this.anchor.x - this.dragStart.x) - 1;
                     h = Math.abs(this.anchor.y - this.dragStart.y) - 1;
-                    this.addShape(new Shape(x, y, w, h));
+
+                    let shape = new Shape(x, y, w, h);
+                    if (!this.shapes.filter(s => s.overlaps(shape)).length) {
+                        this.addShape(shape);
+                    }
+
                 } else {
                     this.wasDragging = false;
                 }
