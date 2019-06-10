@@ -61,4 +61,111 @@ class TemplateManager extends APPUTIL.TemplateManager_cl {
     execute(templatePath, data) {
         return this.execute_px(templatePath + '.html', data);
     }
+
+
+}
+
+
+class Request extends APPUTIL.Requester_cl {
+
+
+    multi(fetchargumets, onSuccess, onError) {
+        let errorsCounter = 0;
+        let errorIndex = -1;
+        let index = 0;
+
+        Promise.all(fetchargumets.map(args => {
+            return fetch(args.path, args.options).then(response => {
+                if (!response.ok) {
+                    errorsCounter++;
+                    errorIndex = index;
+                }
+                index++;
+                return response.json();
+            })
+        })).then((responses) => {
+            if (errorsCounter === 0) {
+                onSuccess(responses)
+            } else {
+                onError(responses[errorIndex]);
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+
+    }
+
+    get(path, onSuccess, onError) {
+        fetch(path)
+            .then(function (response) {
+                let result = null;
+                if (response.ok) { // 200er-Status-Code
+                    result = response.text().then(function (data) {
+                        onSuccess(JSON.parse(data));
+                    });
+                } else {
+                    result = response.text().then(function (data) {
+                        onError(JSON.parse(data));
+                    });
+                }
+                return result;
+            })
+            .catch(function (error) {
+                console.log('[Requester] fetch-Problem: ', error.message);
+            });
+    }
+
+    post(path, data, onSuccess, onError) {
+
+        let options = {
+            method: "POST",
+            cache: "no-cache",
+            body: data
+        };
+
+        fetch(path, options)
+            .then(function (response) {
+                let result = null;
+                if (response.ok) { // 200er-Status-Code
+                    result = response.text().then(function (data) {
+                        onSuccess(JSON.parse(data));
+                    });
+                } else {
+                    result = response.text().then(function (data) {
+                        onError(JSON.parse(data));
+                    });
+                }
+                return result;
+            })
+            .catch(function (error) {
+                console.log('[Requester] fetch-Problem: ', error.message);
+            });
+    }
+
+    put(path, data, onSuccess, onError) {
+
+        let options = {
+            method: "PUT",
+            cache: "no-cache",
+            body: data
+        };
+
+        fetch(path, options)
+            .then(function (response) {
+                let result = null;
+                if (response.ok) { // 200er-Status-Code
+                    result = response.text().then(function (data) {
+                        onSuccess(JSON.parse(data));
+                    });
+                } else {
+                    result = response.text().then(function (data) {
+                        onError(JSON.parse(data));
+                    });
+                }
+                return result;
+            })
+            .catch(function (error) {
+                console.log('[Requester] fetch-Problem: ', error.message);
+            });
+    }
 }
