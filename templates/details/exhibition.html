@@ -1,0 +1,21 @@
+<h1>Messe: #context.exhibition.name#</h1>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Hallen</th>
+    </tr>
+    </thead>
+    <tbody>
+    @console.log(context);@
+    @let entry;@
+    @let i;@
+    @let keys = Object.keys(context.halls);@
+    @for i = 0; i < keys.length; i++@
+    @entry = context.halls[keys[i]];@
+    <tr data-id="#entry.entryid#" class="hall-row">
+        <td>#entry.name#</td>
+    </tr>
+    @endfor@
+    </tbody>
+</table>

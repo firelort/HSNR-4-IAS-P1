@@ -54,6 +54,15 @@ class Application extends View {
                     case 'exhibitionList':
                         console.log('exo');
                         break;
+
+                    case 'exhibition':
+                        self.content = new ExhibitionDetail('.content-body', 'details/exhibition');
+                        self.content.setExhibitionID(data.id);
+                        break;
+                    case 'hall':
+                        self.content = new HallDetail('.content-body', 'details/hall');
+                        self.content.setHallID(data.id);
+                        break;
                     case "indexUser":
                         switch (parseInt(data.type)) {
                             case User.EXHIBITOR:

@@ -6,7 +6,7 @@ class ExhibitionList extends View {
 
         this.addEventListener('click', '.selectable-row', (event, target) => {
             event.stopImmediatePropagation();
-            alert(target.getAttribute('data-id'));
+            eventService.publish('app.load', {module: 'exhibition', id: parseInt(target.getAttribute('data-id'))});
             //eventService.publish('user.changed', e.target.options[e.target.selectedIndex].value);
         });
 

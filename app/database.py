@@ -33,7 +33,14 @@ class Database(object):
 
     def getHallByExhibitionID(self, exhibitionID):
         halls = self.readJSONFile("halls.json")
-        return [x for x in halls if x['exhibitionID'] == exhibitionID]
+        filtered = {}
+        for key, value in halls.items():
+            print(value['exhibitionID'])
+            print(exhibitionID)
+            if int(value['exhibitionID']) == int(exhibitionID):
+                filtered[key] = value
+        return filtered
+
 
     def addHall(self, hall):
         newID = self.addEntry(hall, self.getHalls(), "halls.json")
