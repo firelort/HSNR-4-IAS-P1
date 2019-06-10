@@ -44,16 +44,6 @@ class Application extends View {
                 self.content.render(['ab', 'cd']);
 
                 let hd = new HallDesigner(document.getElementById('halls'));
-                self.addEventListener('mousemove', '#halls', (event, target) => {
-                    // todo fix offset??
-                    console.log(event);
-                    let mouse = hd.getMouse(event);
-                    console.log(mouse);
-                    hd.draw();
-                    let x = Math.round(mouse.x / 40) * 40 - 5;
-                    let y = Math.round(mouse.y / 40) * 40 - 5;
-                    hd.context.fillRect(x, y, 10, 10);
-                });
                 break;
 
             case 'app.load': {
