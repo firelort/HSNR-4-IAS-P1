@@ -16,6 +16,13 @@ class HallDetail extends View {
 
         });
 
+
+        this.addEventListener('click', '#free', (event) => {
+            console.log(this.hd.selectedShape);
+            this.hd.deleteShape(this.hd.selectedShape);
+        });
+
+
     }
 
 

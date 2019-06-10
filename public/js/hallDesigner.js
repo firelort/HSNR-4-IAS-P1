@@ -9,13 +9,19 @@ class Shape {
     }
 
     draw(context) {
+        let tempFill = context.fillStyle;
         context.fillStyle = this.fill;
         context.fillRect(this.x, this.y, this.w, this.h);
+        context.fillStyle = tempFill;
     }
 
     contains(mouseX, mouseY) {
         return (this.x <= mouseX) && (this.x + this.w >= mouseX) &&
             (this.y <= mouseY) && (this.y + this.h >= mouseY);
+    }
+
+    overlaps(shape) {
+
     }
 }
 
@@ -126,24 +132,56 @@ class HallDesigner {
 
 
     setHandlers() {
-        this.canvas.addEventListener('mousedown', function (e) {
+        if (app.userID !== User.GUEST) {
+            this.canvas.addEventListener('mousedown', function (e) {
+                let mouse = this.getMouse(e);
+                //satrtpunkt setzen
+                if (!this.dragStart) {
+                    this.dragStart = {x: Math.round(mouse.x / 40) * 40 - 5, y: Math.round(mouse.y / 40) * 40 - 5}
+                }
+
+            }.bind(this), true);
+
+
+            this.canvas.addEventListener('mousemove', function (e) {
+                //anker setzen
+                let mouse = this.getMouse(e);
+                this.anchor = {x: Math.round(mouse.x / 40) * 40 - 5, y: Math.round(mouse.y / 40) * 40 - 5};
+                this.valid = false;
+            }.bind(this), true);
+
+            this.canvas.addEventListener('mouseup', function (e) {
+                // preview setzen und dragStart löschen
+                if (this.dragStart.x !== this.anchor.x && this.dragStart.y !== this.anchor.y) {
+                    this.wasDragging = true;
+                    this.addShape(new Shape(this.dragStart.x + 6, this.dragStart.y + 6, this.anchor.x - this.dragStart.x - 1, this.anchor.y - this.dragStart.y - 1));
+                } else {
+                    this.wasDragging = false;
+                }
+                delete this.dragStart;
+            }.bind(this), true);
+        }
+        this.canvas.addEventListener('click', function (e) {
             let mouse = this.getMouse(e);
-            //satrtpunkt setzen
-            if (!this.dragStart) {
-                this.dragStart = {x: Math.round(mouse.x / 40) * 40 - 5, y: Math.round(mouse.y / 40) * 40 - 5}
+            if (!this.wasDragging) {
+                this.shapes.forEach(shape => {
+                    if (shape.contains(mouse.x, mouse.y)) {
+                        shape.fill = '#ff0000';
+                        this.selectedShape = shape;
+                    } else {
+                        shape.fill = '#aaaaaa';
+                    }
+                });
+                console.log('click');
             }
+            //satrtpunkt setzen
+            this.valid = false;
 
         }.bind(this), true);
-        this.canvas.addEventListener('mousemove', function (e) {
-            //anker setzen
-            let mouse = this.getMouse(e);
-            this.anchor = {x: Math.round(mouse.x / 40) * 40 - 5, y: Math.round(mouse.y / 40) * 40 - 5};
-            this.valid = false;
-        }.bind(this), true);
-        this.canvas.addEventListener('mouseup', function (e) {
-            // preview setzen und dragStart löschen
-            this.addShape(new Shape(this.dragStart.x + 6, this.dragStart.y + 6, this.anchor.x - this.dragStart.x - 1, this.anchor.y - this.dragStart.y - 1));
-            delete this.dragStart;
-        }.bind(this), true);
+    }
+
+    deleteShape(deleteShape) {
+        this.shapes = this.shapes.filter(e => e != deleteShape);
+        this.valid = false;
     }
 }
