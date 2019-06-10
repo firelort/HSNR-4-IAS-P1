@@ -59,7 +59,7 @@ class View {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
             let element = document.querySelector(this.elementSelector);
-            if (element != null) {
+            if (element != null && this.listeners[event][selector] === undefined) {
                 element.addEventListener(event, this.handleEvents.bind(this));
             } else {
                 console.warn('Konnte EventListener nicht anwenden!');

@@ -5,13 +5,27 @@ class ExhibitionList extends View {
 
 
         this.addEventListener('click', '.selectable-row', (event, target) => {
-            target.classList.toggle('selected');
+            event.stopImmediatePropagation();
+            alert(target.getAttribute('data-id'));
             //eventService.publish('user.changed', e.target.options[e.target.selectedIndex].value);
         });
 
     }
 
+
     notify(self, message, data) {
+    }
+
+    entryAction() {
+        super.entryAction();
+        let req = new Request();
+
+        req.get('/exhibition', exhibitions => {
+            console.log(exhibitions);
+            this.render(exhibitions);
+        }, error => {
+            console.log(error);
+        })
     }
 
 

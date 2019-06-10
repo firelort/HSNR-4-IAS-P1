@@ -41,7 +41,7 @@ class Application extends View {
                     ["Messen"]
                 ];
                 self.sidebar.render(nav, '.sidebar-nav');
-                this.content.render(['ab', 'cd']);
+                self.content.render(['ab', 'cd']);
 
                 let hd = new HallDesigner(document.getElementById('halls'));
                 self.addEventListener('mousemove', '#halls', (event, target) => {
@@ -78,7 +78,7 @@ class Application extends View {
 
                         }
 
-                        self.content.render();
+                        //self.content.render();
                         break;
                 }
 
