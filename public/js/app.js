@@ -43,7 +43,14 @@ class Application extends View {
                 ];
                 self.sidebar.render(nav, '.sidebar-nav');
                 self.content.entryAction();
+                let req = new Request();
+                req.get('/hall', halls => {
+                    eventService.publish('halls.updated', halls);
+                });
 
+                req.get('/exhibition', exhibitions => {
+                    eventService.publish('exhibitions.updated', exhibitions);
+                })
                 break;
 
             case 'app.load': {
