@@ -21,8 +21,33 @@ class ExhibitionList extends View {
         let req = new Request();
 
         req.get('/exhibition', exhibitions => {
-            console.log(exhibitions);
-            this.render(exhibitions);
+
+            let data = {};
+            data.exhibitions = exhibitions;
+            if (app.userID != User.GUEST) {
+                req.get('/reservation', reservations => {
+                    data.reservations = reservations;
+                    let ids = [];
+                    for (let res in reservations) {
+                        ids.push(reservations[res].hallID);
+                    }
+
+                    ids = [...new Set(ids)];
+                    let fetchArgs = [];
+                    ids.forEach(id => {
+                        fetchArgs.push({path: '/hall/' + id});
+                    });
+                    req.multi(fetchArgs, halls => {
+                        data.halls = halls;
+                        this.render(data);
+                    })
+
+
+                });
+            } else {
+                this.render(data);
+            }
+
         }, error => {
             console.log(error);
         })

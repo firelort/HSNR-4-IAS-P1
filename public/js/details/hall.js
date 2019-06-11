@@ -3,6 +3,8 @@ class HallDetail extends View {
     constructor(elementSelector, templatePath) {
         super(elementSelector, templatePath);
 
+        eventService.subscribe(this, 'shape.selected');
+
         this.addEventListener('click', '#save', (event) => {
             this.hall.shapes = this.hd.shapes;
             let req = new Request();
@@ -34,6 +36,39 @@ class HallDetail extends View {
                 req.put("/reservation", reservation, data => {
                     console.log(data);
                     this.hd.selectedShape.status = ShapeTypes.ACCEPTED;
+
+
+                    this.hall.shapes = this.hd.shapes;
+                    let req = new Request();
+                    req.put("/hall", this.hall, data => {
+                        console.log(data);
+                    }, error => {
+                        conole.log(error);
+                    })
+
+
+                }, error => {
+                    conole.log(error);
+                })
+
+
+            })
+
+
+        });
+
+        this.addEventListener('click', '#decline', (event) => {
+
+
+            let req = new Request();
+            req.get('/reservation/' + this.hd.selectedShape.reservationID, reservation => {
+
+                reservation.accepted = 0;
+
+
+                req.put("/reservation", reservation, data => {
+                    console.log(data);
+                    this.hd.deleteShape(this.hd.selectedShape);
 
 
                     this.hall.shapes = this.hd.shapes;
@@ -158,6 +193,24 @@ class HallDetail extends View {
     setHallID(hallID) {
         this.hallID = hallID;
         return this;
+    }
+
+    notify(self, message, data) {
+        switch (message) {
+            case 'shape.selected':
+
+                if (data.reservationID) {
+                    let req = new Request();
+                    req.get('/reservation/' + data.reservationID, reservation => {
+
+                        document.querySelector('.detail-name').textContent = reservation.creator
+
+                    });
+                }
+
+                break;
+
+        }
     }
 
 

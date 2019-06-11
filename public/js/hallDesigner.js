@@ -113,17 +113,6 @@ class HallDesigner {
 
             this.context.stroke();
 
-            // cursor "anker"
-            if (this.anchor) {
-                this.context.fillRect(this.anchor.x, this.anchor.y, 10, 10);
-            }
-
-            // dockingpunkt fürs zeichnen
-            // und preview für auswahl
-            if (this.dragStart) {
-                this.context.fillRect(this.dragStart.x, this.dragStart.y, 10, 10);
-                ctx.strokeRect(this.dragStart.x + 5, this.dragStart.y + 5, this.anchor.x - this.dragStart.x, this.anchor.y - this.dragStart.y);
-            }
 
             // alles shapes zeichnen
             let l = shapes.length;
@@ -136,6 +125,19 @@ class HallDesigner {
                 // reservierungen für user nicht anzeigen
                 if (shape.status == ShapeTypes.RESERVED && app.userID == User.GUEST) continue;
                 shapes[i].draw(ctx);
+            }
+
+
+            // cursor "anker"
+            if (this.anchor) {
+                this.context.fillRect(this.anchor.x, this.anchor.y, 10, 10);
+            }
+
+            // dockingpunkt fürs zeichnen
+            // und preview für auswahl
+            if (this.dragStart) {
+                this.context.fillRect(this.dragStart.x, this.dragStart.y, 10, 10);
+                ctx.strokeRect(this.dragStart.x + 5, this.dragStart.y + 5, this.anchor.x - this.dragStart.x, this.anchor.y - this.dragStart.y);
             }
 
             this.valid = true;
@@ -224,9 +226,10 @@ class HallDesigner {
             if (!this.wasDragging) {
                 this.shapes.forEach(shape => {
                     if (shape.contains(mouse.x, mouse.y)) {
-                        if (shape.status == ShapeTypes.PREOCCUPIED) return;
+                        if (shape.status == ShapeTypes.PREOCCUPIED && app.userID != User.ORGANIZER) return;
                         shape.isSelected = true;
                         this.selectedShape = shape;
+                        eventService.publish('shape.selected', shape);
                     } else {
                         shape.isSelected = false;
                     }

@@ -8,11 +8,32 @@
     <tbody>
     @let entry;@
     @let i;@
-    @let keys = Object.keys(context);@
+    @let keys = Object.keys(context.exhibitions);@
     @for i = 0; i < keys.length; i++@
-    @entry = context[keys[i]];@
+    @entry = context.exhibitions[keys[i]];@
     <tr data-id="#entry.entryid#" class="selectable-row">
         <td>#entry.name#</td>
+    </tr>
+    @endfor@
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Reservierungen</th>
+        <th colspan="2">Optionen</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @keys = Object.keys(context.reservations);@
+    @for i = 0; i < keys.length; i++@
+    @entry = context.reservations[keys[i]];@
+    <tr data-id="#entry.entryid#">
+        <td>#entry.creator#</td>
+        <td class="accept-reservation" data-id="#entry.entryid#">Annehmen</td>
+        <td class="decline-reservation" data-id="#entry.entryid#">Ablehnen</td>
     </tr>
     @endfor@
     </tbody>
