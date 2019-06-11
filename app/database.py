@@ -39,13 +39,39 @@ class Database(object):
                 filtered[key] = value
         return filtered
 
-
     def addHall(self, hall):
         newID = self.addEntry(hall, self.getHalls(), "halls.json")
         return newID
 
     def editHall(self, hall):
         newID = self.editEntry(hall, self.getHalls(), "halls.json")
+        return newID
+
+        # -------------------------------------------------------------------------
+
+    def getReservations(self):
+        return self.readJSONFile("reservations.json")
+
+    def getReservationByID(self, reservationID):
+        reservation = self.readJSONFile("reservations.json")
+        return self.getEntryFromList(reservation, reservationID)
+
+    def getReservationByHallID(self, hallID):
+        reservations = self.readJSONFile("reservations.json")
+        filtered = {}
+        for key, value in reservations.items():
+            if int(value['hallID']) == int(hallID):
+                filtered[key] = value
+        return filtered
+
+    def addReservation(self, reservation):
+
+        print('lol')
+        newID = self.addEntry(reservation, self.getReservations(), "reservations.json")
+        return newID
+
+    def editReservation(self, reservation):
+        newID = self.editEntry(reservation, self.getReservations(), "reservations.json")
         return newID
 
     # -------------------------------------------------------------------------

@@ -12,7 +12,7 @@ class Application extends View {
         this.sidebar = new Sidebar(".sidebar-body", "layout/sidebar");
         // this.content = new Content('.content-body', 'layout/content');
         // this.content = new ExhibitionList('.content-body', 'lists/exhibitions');
-        this.content = new ExhibitionList('.content-body', 'exhibitions/hallReservation');
+        this.content = new ExhibitionList('.content-body', 'lists/indexGuest');
 
 
     }
@@ -42,9 +42,8 @@ class Application extends View {
                     ["Messen"]
                 ];
                 self.sidebar.render(nav, '.sidebar-nav');
-                self.content.render(['ab', 'cd']);
+                self.content.entryAction();
 
-                let hd = new HallDesigner(document.getElementById('halls'));
                 break;
 
             case 'app.load': {

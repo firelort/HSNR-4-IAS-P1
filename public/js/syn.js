@@ -115,6 +115,30 @@ class Request extends APPUTIL.Requester_cl {
             });
     }
 
+    delete(path, onSuccess, onError) {
+
+        let options = {
+            method: "DELETE"
+        };
+        fetch(path, options)
+            .then(function (response) {
+                let result = null;
+                if (response.ok) { // 200er-Status-Code
+                    result = response.text().then(function (data) {
+                        onSuccess(JSON.parse(data));
+                    });
+                } else {
+                    result = response.text().then(function (data) {
+                        onError(JSON.parse(data));
+                    });
+                }
+                return result;
+            })
+            .catch(function (error) {
+                console.log('[Requester] fetch-Problem: ', error.message);
+            });
+    }
+
     post(path, data, onSuccess, onError) {
 
         let options = {

@@ -11,3 +11,9 @@
     <button id="save" class="btn">Speichern</button>
 </div>
 @endif;@
+@if app.userID == User.EXHIBITOR@
+<div class="button-group">
+    <button id="reserve" class="btn">Reservieren</button>
+    <button id="unreserve" class="btn">Reservieren aufheben</button>
+</div>
+@endif;@

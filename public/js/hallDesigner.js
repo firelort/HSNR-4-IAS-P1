@@ -1,16 +1,27 @@
 // Für Hallen, Fußwege usw.
 class Shape {
-    constructor(x, y, w, h, fill) {
+    constructor(x, y, w, h) {
         this.x = x || 0;
         this.y = y || 0;
         this.w = w || 1;
         this.h = h || 1;
-        this.fill = fill || '#AAAAAA';
+        this.reservationID = null;
+        this.status = null;
+    }
+
+    setReservationID(reservationID) {
+        this.reservationID = reservationID;
+    }
+
+    setStatus(status) {
+        this.status = status;
     }
 
     draw(context) {
+
+
         let tempFill = context.fillStyle;
-        context.fillStyle = this.fill;
+        context.fillStyle = this.getColor();
         context.fillRect(this.x, this.y, this.w, this.h);
         context.fillStyle = tempFill;
     }
@@ -18,6 +29,30 @@ class Shape {
     contains(mouseX, mouseY) {
         return (this.x <= mouseX) && (this.x + this.w >= mouseX) &&
             (this.y <= mouseY) && (this.y + this.h >= mouseY);
+    }
+
+    getColor() {
+        let fill;
+
+        if (this.isSelected) {
+            fill = '#ff0000';
+        } else {
+            switch (this.status) {
+                case ShapeTypes.PREOCCUPIED:
+                    fill = '#333333';
+                    break;
+                case ShapeTypes.ACCEPTED:
+                    fill = '#5ade69';
+                    break;
+                case ShapeTypes.RESERVED:
+                    fill = '#b6b636';
+                    break;
+                default:
+                    fill = '#999999';
+            }
+        }
+
+        return fill;
     }
 
     overlaps(otherShape) {
@@ -97,6 +132,9 @@ class HallDesigner {
                 // shapes ausserhalb skippen (sollte eigentlich nicht vorkommen)
                 if (shape.x > this.width || shape.y > this.height ||
                     shape.x + shape.w < 0 || shape.y + shape.h < 0) continue;
+
+                // reservierungen für user nicht anzeigen
+                if (shape.status == ShapeTypes.RESERVED && app.userID == User.GUEST) continue;
                 shapes[i].draw(ctx);
             }
 
@@ -164,6 +202,14 @@ class HallDesigner {
 
                     let shape = new Shape(x, y, w, h);
                     if (!this.shapes.filter(s => s.overlaps(shape)).length) {
+
+                        if (app.userID == User.EXHIBITOR) {
+                            shape.setStatus(ShapeTypes.RESERVED);
+                        } else if (app.userID == User.ORGANIZER) {
+                            shape.setStatus(ShapeTypes.PREOCCUPIED);
+                        }
+
+
                         this.addShape(shape);
                     }
 
@@ -178,10 +224,11 @@ class HallDesigner {
             if (!this.wasDragging) {
                 this.shapes.forEach(shape => {
                     if (shape.contains(mouse.x, mouse.y)) {
-                        shape.fill = '#ff0000';
+                        if (shape.status == ShapeTypes.PREOCCUPIED) return;
+                        shape.isSelected = true;
                         this.selectedShape = shape;
                     } else {
-                        shape.fill = '#aaaaaa';
+                        shape.isSelected = false;
                     }
                 });
                 console.log('click');
