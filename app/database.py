@@ -11,6 +11,19 @@ class Database(object):
 
     # -------------------------------------------------------------------------
 
+    def search(self, query):
+        reservations = self.readJSONFile("reservations.json")
+        filtered = {}
+        for key, value in reservations.items():
+            print(value)
+            if (query.lower() in value['creator'].lower() and "accepted" in value and value['accepted']):
+                filtered[key] = value
+        return filtered
+
+    # -------------------------------------------------------------------------
+
+
+
     def getExhibitions(self):
         return self.readJSONFile("exhibitions.json")
 

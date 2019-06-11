@@ -15,6 +15,12 @@ class Application extends View {
         this.content = new ExhibitionList('.content-body', 'lists/indexGuest');
 
 
+        this.addEventListener('submit', '#search', (event, target) => {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+            eventService.publish('app.load', {module: 'search', query: document.querySelector('#q').value});
+        });
+
     }
 
     /**
@@ -60,6 +66,11 @@ class Application extends View {
                 switch (data.module) {
                     case 'exhibitionList':
                         console.log('exo');
+                        break;
+
+                    case 'search':
+                        this.content = new SearchList('.content-body', 'lists/search');
+                        this.content.setQuery(data.query);
                         break;
 
                     case 'exhibition':
