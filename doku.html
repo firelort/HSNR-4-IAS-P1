@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>DOKU</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="/home/hartlab/Desktop/iasp1.css" />
+</head>
+<body>
+<nav id="TOC">
+<ul>
+<li><a href="#dokumentation-messeplaner-ias">Dokumentation Messeplaner (IAS)</a><ul>
+<li><a href="#einleitung">1. Einleitung</a></li>
+<li><a href="#allgemeiner-aufbau-der-software">2. Allgemeiner Aufbau der Software</a><ul>
+<li><a href="#wireframe-grundlayout">2.1 Wireframe Grundlayout</a></li>
+</ul></li>
+<li><a href="#verschiedene-nutzungszenarien">3. Verschiedene Nutzungszenarien</a><ul>
+<li><a href="#veranstalter">3.1 Veranstalter</a></li>
+<li><a href="#aussteller">3.2 Aussteller</a></li>
+<li><a href="#besucher">3.3 Besucher</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="dokumentation-messeplaner-ias">Dokumentation Messeplaner (IAS)</h1>
+<h2 id="einleitung">1. Einleitung</h2>
+<p>In der folgenden Dokumentation wird ein Konzept für eine Messeverwaltungssoftware von Robert Hartings und Alexander Niersmann beschrieben.</p>
+<p>Bei der Messeverwaltungssoftware handelt es sich um eine Webanwendung und soll über einen Browser (Mobile &amp; Desktop) erreicht werden. Für beide Device Typen soll die gute Nutzbarkeit sichergestellt werden.</p>
+<p>Das Konzept umfasst die Beschreibung der Nutzergruppen Veranstalter, Aussteller und Besucher und deren Anforderungen an die Messeverwaltungssoftware. Ebenso werden die Interaktionsmöglichkeiten mithilfe von UML-StateCharts und der visuelle Aufbau der Webseite durch Website Wireframes dargestellt.</p>
+<h2 id="allgemeiner-aufbau-der-software">2. Allgemeiner Aufbau der Software</h2>
+<h3 id="wireframe-grundlayout">2.1 Wireframe Grundlayout</h3>
+<p>Die Anwendung ist in zwei Nuterzinterfacebereich eingeteilt, welche dynmaisch geladen / entleert werden. Erstens gitb es den Navigationsbereich, in welchen die Navigationselemente geladen werden. Zweitens wird in den Contentbereich der Inhalt geladen, dies kann unter anderem Informationen über Messe oder Halle sein.</p>
+<p>Desweitern gibt es ein Suchfeld in dem nur Austeller gesucht werden können.</p>
+<p><strong>Desktop Version:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_grundlayout.svg" title="Wireframe Grundlayout" alt="Wireframe Grundlayout" /><figcaption>Wireframe Grundlayout</figcaption>
+</figure>
+<p><strong>Mobile Version:</strong></p>
+<p><img src="dokuImg/wireframe_mobile_grundlayout_1.svg" title="Wireframe Grundlayout Mobile" alt="Wireframe Grundlayout Mobile" /> <img src="dokuImg/wireframe_mobile_grundlayout_2.svg" title="Wireframe Grundlayout Mobile" alt="Wireframe Grundlayout Mobile" /></p>
+<h2 id="verschiedene-nutzungszenarien">3. Verschiedene Nutzungszenarien</h2>
+<h3 id="veranstalter">3.1 Veranstalter</h3>
+<h4 id="allgemeine-beschreibung">3.1.1 Allgemeine Beschreibung</h4>
+<p>Die Nutzergruppe Veranstalter soll die Aufteilung und Belegung von Messehallen planen und verwalten sowie neue Hallen und Messen anlegen können. Dazu zählt auch das Annehmen oder Ablehnen von Buchungsanfragen sowie das Verändern von Verkehrsflächen oder Halleninfrastruktur.</p>
+<h4 id="beschreibung-persona">3.1.2 Beschreibung Persona</h4>
+<p>Der Veranstalter stellt pro Messe eine oder mehrere Hallen zur Verfügung, damit Aussteller sich dort auf Ständen präsentieren können und Besuchern sich über diese Aussteller informieren können. Weiterhin kümmert sich der Veranstalter um die Verteilung der Verkehrsflächen und der Halleninfrastruktur. Das heißt erstellt sicher, dass die genügend Wege, Ein- und Ausgänge und Notausgänge eingeplant sind und Toiletten und Restaurants vorhanden und auf den Messeplänen eingetragen sind.</p>
+<p>Ein Veranstalter hat die Möglichkeit mehr als eine Messe abzuhalten.</p>
+<h4 id="interaktionsdesign">3.1.3 Interaktionsdesign</h4>
+<h5 id="übersicht-interaktion">3.1.3.1 Übersicht Interaktion</h5>
+<p>Dem Messeveranstalter stehen folgenden Interaktionen zur Verfügung:</p>
+<ul>
+<li>Login / Logout</li>
+<li>Übersicht über Buchungen</li>
+<li>Messenauswahl
+<ul>
+<li>Übersicht über die Messe</li>
+<li>Hallenauswahl
+<ul>
+<li>Änderungen Hallenlayout</li>
+</ul></li>
+<li>Übersicht über Buchungen dieser Messe</li>
+<li>Halle anlegen</li>
+</ul></li>
+<li>Messe anlegen</li>
+</ul>
+<figure>
+<img src="dokuImg/stateChart_organization.png" title="Statechart Veranstalter" alt="Statechart Veranstalter" /><figcaption>Statechart Veranstalter</figcaption>
+</figure>
+<p>Die Navigationsübersicht sieht auf Desktop wie folgt aus:</p>
+<figure>
+<img src="dokuImg/wireframe_organizer_navigation_exhibition.svg" title="Navigation Messeveranstalter" alt="Navigation Messeveranstalter" /><figcaption>Navigation Messeveranstalter</figcaption>
+</figure>
+<h5 id="login-logout">3.1.3.2 Login / Logout</h5>
+<p>Die Loginseite ist über eine unterseite erreichbar, damit Besucher von Messen durch dieses Element nicht gestört werden und nicht die Annahme treffen, dass ein Login notwendig für sie ist. Der Login ist für Veranstalter und Austeller derselbe. Bei falschen Logininformationen wird der Nutzer hingewiesen, dass mit den gegeben Logininformationen ein Login nicht möglich ist. Ein neuer Login, kann nur durch einen Menschen der Gruppe Messeveranstalter angelegt werden.</p>
+<figure>
+<img src="dokuImg/stateChart_login.png" title="Statechart Login" alt="Statechart Login" /><figcaption>Statechart Login</figcaption>
+</figure>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_login.svg" title="Wireframe Login" alt="Wireframe Login" /><figcaption>Wireframe Login</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_login.svg" title="Wireframe Login" alt="Wireframe Login" /><figcaption>Wireframe Login</figcaption>
+</figure>
+<h5 id="buchungen">3.1.3.3 Buchungen</h5>
+<p>In der Buchungsübersicht werden alle Buchungen aufgeführt. Die Buchung kann durch einen Mitarbeiter angenommen oder abgelehnt werden. Die Buchungen erhalten die Informationen über Aussteller, Messe, Halle und Stand.</p>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_organization_selectedReservation.svg" title="Wireframe Veranstalter Buchungen" alt="Wireframe Veranstalter Buchungen" /><figcaption>Wireframe Veranstalter Buchungen</figcaption>
+</figure>
+<figure>
+<img src="dokuImg/wireframe_organization_contentReservation.svg" title="Wireframe Veranstalter Buchungen" alt="Wireframe Veranstalter Buchungen" /><figcaption>Wireframe Veranstalter Buchungen</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_organization_contentReservation.svg" title="Wireframe Veranstalter Buchungen" alt="Wireframe Veranstalter Buchungen" /><figcaption>Wireframe Veranstalter Buchungen</figcaption>
+</figure>
+<h5 id="messenauswahl">3.1.3.4 Messenauswahl</h5>
+<p>Der Benutzer kann sich aus der Liste eine Messe auswählen, welche er betrachten möchte. Nach Auswahl der Messe, wird die Navigation, durch die messensepzifische Navigation ersetzt. Das heißt, dass die Liste durch eine Liste von Hallen plus Einträge für “Messeübersicht”, “Zurück zur Messenübersicht”, “Buchungsübersicht” getauscht wird. Für den Contentbereich siehe <strong>3.1.3.4.1</strong></p>
+<h6 id="übersicht-messe">3.1.3.4.1 Übersicht Messe</h6>
+<p>In der Messeübersicht erhält der Contentbereich Informationen über die Messe, wie z.B. Anfahrtswege und Öffnungszeiten. Hier können neue Hallen angelegt werden und Informationen zur Messe geändert werden. Änderungen müssen gespeichert werden.</p>
+<p>In der Navigationsliste wird der Eintrag als aktiv makiert.</p>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_organization_selectedOverview.svg" title="Wireframe Veranstalter Messeübersicht" alt="Wireframe Veranstalter Messeübersicht" /><figcaption>Wireframe Veranstalter Messeübersicht</figcaption>
+</figure>
+<figure>
+<img src="dokuImg/wireframe_organization_contentOverview.svg" title="Wireframe Veranstalter Messeübersicht" alt="Wireframe Veranstalter Messeübersicht" /><figcaption>Wireframe Veranstalter Messeübersicht</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_organization_contentOverview.svg" title="Wireframe Veranstalter Messeübersicht" alt="Wireframe Veranstalter Messeübersicht" /><figcaption>Wireframe Veranstalter Messeübersicht</figcaption>
+</figure>
+<h6 id="übersicht-buchungen-der-messe">3.1.3.4.2 Übersicht Buchungen der Messe</h6>
+<p>In dieser Übersicht werden nur die Buchungen angezeigt, welche die ausgewählte Messe betreffen. Die Tabelle ist unterscheidet sich zur allgemeinen Buchungsliste nur durch das Fehlen der Messespalte. <em><strong>Siehe 3.1.3.3</strong></em></p>
+<h6 id="übersicht-hallen">3.1.3.4.3 Übersicht Hallen</h6>
+<p>In der Hallenübersicht kann der Veranstalter die Flächen zu Wegen, Toiletten, Restaurants und Freiflächen ändern. Hier sieht der Veranstalter auch welche Flächen bereits reserviert sind.</p>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_organization_contentHall.svg" title="Wireframe Veranstalter Hallenübersicht" alt="Wireframe Veranstalter Hallenübersicht" /><figcaption>Wireframe Veranstalter Hallenübersicht</figcaption>
+</figure>
+<figure>
+<img src="dokuImg/wireframe_organization_selectedHall.svg" title="Wireframe Veranstalter Hallenübersicht" alt="Wireframe Veranstalter Hallenübersicht" /><figcaption>Wireframe Veranstalter Hallenübersicht</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_exhibitor_contentHall.svg" title="Wireframe Veranstalter Hallenübersicht" alt="Wireframe Veranstalter Hallenübersicht" /><figcaption>Wireframe Veranstalter Hallenübersicht</figcaption>
+</figure>
+<h6 id="halle-hinzufügen">3.1.3.4.3 Halle hinzufügen</h6>
+<p>Der Veranstaler kann neue Hallen hinzufügen. Hierbei muss er die Hallen Breite und Länge angeben.</p>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_organization_createHall.svg" title="Wireframe Halleanlegen" alt="Wireframe Halleanlegen" /><figcaption>Wireframe Halleanlegen</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_organization_createHall.svg" title="Wireframe Halleanlegen" alt="Wireframe Halleanlegen" /><figcaption>Wireframe Halleanlegen</figcaption>
+</figure>
+<h4 id="anlegen-von-messen">3.1.3.5 Anlegen von Messen</h4>
+<p>Die Veranstalter Gruppe kann neue Messen anlegen, hierzu können Basisinformaitonen angegen werden, wie Adresse und Ansprechpartner. Diese Informationen sind öffentlich einsehbar.</p>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_organization_createEx.svg" title="Wireframe Messeanlegen" alt="Wireframe Messeanlegen" /><figcaption>Wireframe Messeanlegen</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_organization_createEx.svg" title="Wireframe Messeanlegen" alt="Wireframe Messeanlegen" /><figcaption>Wireframe Messeanlegen</figcaption>
+</figure>
+<h3 id="aussteller">3.2 Aussteller</h3>
+<h4 id="allgemeine-beschreibung-1">3.2.1 Allgemeine Beschreibung</h4>
+<p>Die Nutzergruppe Aussteller hat die Möglichekeit Messestände anzumieten in dem sie eine Buchung beantragt. Eine Stonierung ist bis zum Begin der Messe möglich, sofern die Buchung durch den Veranstalter genemigt wurden ist.</p>
+<p>Ein Aussteller kann mehrer Buchungen pro Messe durchführen.</p>
+<h4 id="beschreibung-persona-1">3.2.2 Beschreibung Persona</h4>
+<p>Der Aussteller tritt auf der Messe auf um sich Besuchern zu präsentieren um so auf seine Produkte / Dienstleistugen aufmerksam zu machen. Um diese zu tun, muss der Aussteller die Gegebenheiten der Halle sowie den Platz seines Standes wissen und er muss die Möglichkeit haben, Informationen zu sich, seinem Stand und seiner Präsentation abzulegen.</p>
+<h4 id="interaktionsdesign-1">3.2.3 Interaktionsdesign</h4>
+<h5 id="übersicht-interaktion-1">3.2.3.1 Übersicht Interaktion</h5>
+<p>Dem Austeller stehen folgenden Interaktionen zur Verfügung:</p>
+<ul>
+<li>Login / Logout</li>
+<li>Übersicht über Buchungen</li>
+<li>Messenauswahl
+<ul>
+<li>Übersicht über die Messe</li>
+<li>Hallenauswahl
+<ul>
+<li>Buchungen</li>
+</ul></li>
+<li>Übersicht über Buchungen dieser Messe</li>
+<li>Zurück</li>
+</ul></li>
+</ul>
+<figure>
+<img src="dokuImg/stateChart_exhibitor.png" title="Statechart Aussteller" alt="Statechart Aussteller" /><figcaption>Statechart Aussteller</figcaption>
+</figure>
+<p>Die Navigation sieht wie folgt aus:</p>
+<p><strong>Desktop</strong></p>
+<figure>
+<img src="dokuImg/wireframe_exhibitor_navigation_exhibition.svg" title="Navigation Aussteller" alt="Navigation Aussteller" /><figcaption>Navigation Aussteller</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_exhibitor_navigation_exhibition.svg" title="Navigation Aussteller" alt="Navigation Aussteller" /><figcaption>Navigation Aussteller</figcaption>
+</figure>
+<h5 id="login-logout-1">3.2.3.2 Login / Logout</h5>
+<p>Der Aussteller bekommt vom Messeveranstalter seinen Login und kann sich mit diesem wie der Messeveranstalter anmelden. <strong>Siehe 3.1.3.2</strong></p>
+<h5 id="übersicht-buchungen">3.2.3.3 Übersicht Buchungen</h5>
+<p>In dieser Übersicht sieht ein Veranstalter für welche Messen er sich in welchen Hallen einen oder mehrere Stände gemietet hat und ob diese Buchung von dem Messeveranstalter angenommen oder abgelehnt wurden ist. Diese Übersicht ist als Tabelle aufebaut.</p>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_exhibitor_selectedReservations.svg" title="Navigation Aussteller Buchungen" alt="Navigation Aussteller Buchungen" /><figcaption>Navigation Aussteller Buchungen</figcaption>
+</figure>
+<figure>
+<img src="dokuImg/wireframe_exhibitor_contentReservations.svg" title="Wireframe Aussteller Buchungen" alt="Wireframe Aussteller Buchungen" /><figcaption>Wireframe Aussteller Buchungen</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_exhibitor_contentReservations.svg" title="Navigation Aussteller Buchungen" alt="Navigation Aussteller Buchungen" /><figcaption>Navigation Aussteller Buchungen</figcaption>
+</figure>
+<h5 id="messenauswahl-1">3.2.3.4 Messenauswahl</h5>
+<p>Der Benutzer kann sich aus der Liste eine Messe auswählen, welche er betrachten möchte. Nach Auswahl der Messe, wird die Navigation, durch die messensepzifische Navigation ersetzt. Das heißt, dass die Liste durch eine Liste von Hallen plus Einträge für “Messeübersicht”, “Zurück zur Messenübersicht”, “Buchungsübersicht” getauscht wird. Für den Contentbereich siehe <strong>3.2.3.4.1</strong></p>
+<h5 id="übersicht-messe-1">3.2.3.4.1 Übersicht Messe</h5>
+<p>In der Messeübersicht erhält der Contentbereich Informationen über die Messe, wie z.B. Anfahrtswege und Öffnungszeiten.</p>
+<p>In der Navigationsliste wird der Eintrag als aktiv makiert.</p>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_exhibitor_navigation_overview.svg" title="Navigation Aussteller Übersicht" alt="Navigation Aussteller Übersicht" /><figcaption>Navigation Aussteller Übersicht</figcaption>
+</figure>
+<figure>
+<img src="dokuImg/wireframe_visitor_contentOverview.svg" title="Navigation Messeveranstalter" alt="Navigation Messeveranstalter" /><figcaption>Navigation Messeveranstalter</figcaption>
+</figure>
+<p><strong>Mobile:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_exhibitor_contentOverview.svg" title="Navigation Messeveranstalter" alt="Navigation Messeveranstalter" /><figcaption>Navigation Messeveranstalter</figcaption>
+</figure>
+<h5 id="hallenauswahl">3.2.3.4.2 Hallenauswahl</h5>
+<p>Der Benutzer kann sich aus der Liste der Hallen eine Halle auswählen und erhält dann eine Hallenübersicht. Diese Hallenübersicht beinhaltet ein Raster der Halle inklusive der Basisinfrastruktur (Restuarants, Toiletten, Flucht- und Rettungswege, Ein- und Ausgänge). sowie der Aussteller, welche der Messebetreibe zugelassen hat. Falls der Benutzer eine Fläche buchen möchte kann dieser seine gewünschte Fläche makieren und eine Buchung aufgebene.</p>
+<figure>
+<img src="dokuImg/wireframe_exhibitor_selectedHall.svg" title="Wireframe Besucher Halle" alt="Wireframe Besucher Halle" /><figcaption>Wireframe Besucher Halle</figcaption>
+</figure>
+<p>Der Contenbereich sieht wie folgt aus:</p>
+<figure>
+<img src="dokuImg/wireframe_exhibitor_contentHall.svg" title="Wireframe Aussteller Hallenübersicht" alt="Wireframe Aussteller Hallenübersicht" /><figcaption>Wireframe Aussteller Hallenübersicht</figcaption>
+</figure>
+<p><strong>Mobile Version:</strong></p>
+<p>In der Navigationsliste wird die aktuelle Auswahl hervorgehoben.</p>
+<figure>
+<img src="dokuImg/wireframe_mobile_visitor_selectedHall.svg" title="Wireframe Besucher Halle Mobile" alt="Wireframe Besucher Halle Mobile" /><figcaption>Wireframe Besucher Halle Mobile</figcaption>
+</figure>
+<p>Der Contentbereich sieht wie folgt aus:</p>
+<figure>
+<img src="dokuImg/wireframe_mobile_exhibitor_contentHall.svg" title="Wireframe Aussteller Hallenübersicht" alt="Wireframe Aussteller Hallenübersicht" /><figcaption>Wireframe Aussteller Hallenübersicht</figcaption>
+</figure>
+<h5 id="übersicht-buchungen-der-messe-1">3.2.3.4.3 Übersicht Buchungen der Messe</h5>
+<p>In dieser Übersicht werden nur die Buchungen angezeigt, welche die ausgewählte Messe betreffen. Die Tabelle ist die gleiche wie bei der “allgemeinen” Buchungsübersicht, bis auf das fehlen der Messespalte. <em><strong>Siehe 3.2.3.3</strong></em></p>
+<h5 id="auswahl-zurück">3.2.3.4.4 Auswahl Zurück</h5>
+<p>Der Benuzter kehrt zur Messenübersicht zurück und kann sich dort erneut eine Messe auswählen welche er betrachten möchte.</p>
+<h3 id="besucher">3.3 Besucher</h3>
+<h4 id="allgemeine-beschreibung-2">3.3.1 Allgemeine Beschreibung</h4>
+<p>Die Nutzergruppe Besucher hat die Möglichkeit sich die verschiedenen Messe und ihre Hallen(-pläne) anzuschauen. Auch kann die Nutzergruppe Besucher Informationen über Halleninfrastruktur und Aussteller sowie deren gegeben Informationen abrufen.</p>
+<h4 id="beschreibung-persona-2">3.3.2 Beschreibung Persona</h4>
+<p>Der Besucher nutzt die Messeplanungssoftware um Informationen über die Messe, die Hallenaufteilung sowie einzelne Aussteller zu erhalten. Er benutzt die Software auch um herauszufinden, ob ein bestimmter Aussteller vertreten ist und wo dieser sich befindet.</p>
+<h4 id="interaktionsdesign-2">3.3.3 Interaktionsdesign</h4>
+<h5 id="übersicht-interaktion-2">3.3.3.1 Übersicht Interaktion</h5>
+<p>Dem Besucher stehen folgende Interaktionen zur Auswahl:</p>
+<ul>
+<li>Auswahl der Messe in der Navigation
+<ul>
+<li>Übersicht der Messe
+<ul>
+<li>Informationen über die Messe (Öffnungszeiten, Standort)</li>
+<li>Auflistung der Aussteller inkl. Hallennummer</li>
+</ul></li>
+<li>Hallenauswahl
+<ul>
+<li>Übersicht der Hallenstruktur mit gefärben Feldern</li>
+</ul></li>
+<li>Zurück zur Messenauswahl</li>
+</ul></li>
+<li>Suchen von Ausstellern</li>
+</ul>
+<h5 id="auswahl-messe">3.3.3.2 Auswahl Messe</h5>
+<figure>
+<img src="dokuImg/stateChart_visitor.png" title="State Chart Besucher" alt="StateChart Besucher" /><figcaption>StateChart Besucher</figcaption>
+</figure>
+<p>Eine Messe kann aus der Liste von Messen ausgewählt werden. Diese Liste beffindet sich im Navigationsbereich.</p>
+<p><strong>Desktop:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_visitor_navigation_exhibition.svg" title="Wireframe Visitor Navigation" alt="Wireframe Visitor Navigation" /><figcaption>Wireframe Visitor Navigation</figcaption>
+</figure>
+<p><strong>Navigation:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_visitor_navigation_exhibition.svg" title="Wireframe Visitor Navigation" alt="Wireframe Visitor Navigation" /><figcaption>Wireframe Visitor Navigation</figcaption>
+</figure>
+<h6 id="auswahl-einer-messe">3.3.3.2.1 Auswahl einer Messe</h6>
+<p>Der Besucher kann sich aus der Liste eine Messe auswählen, welche er betrachten möchte. Nach Auswahl der Messe, wird die Navigation, durch die Messensepzifische Navigation ersetzt. Das heißt, dass die Liste der Messen durch eine Liste von Hallen plus einer Messeübersicht und einem “Zurück zur Messenübersicht” getauscht wird. Der Contentbereich erhält dann Informationen über die Messe, wie z.B. Anfahrtswege und Öffnungszeiten.</p>
+<p><strong>Desktop Version:</strong></p>
+<p>In der Navigationsliste wird die Übersicht als aktiv makiert:</p>
+<figure>
+<img src="dokuImg/wireframe_visitor_selectedOverview.svg" title="Wireframe Besucher Messeübersicht" alt="Wireframe Besucher Messeübersicht" /><figcaption>Wireframe Besucher Messeübersicht</figcaption>
+</figure>
+<p>Der Content bereich wird wie folgt dargestellt:</p>
+<figure>
+<img src="dokuImg/wireframe_visitor_contentOverview.svg" title="Wireframe Besucher Hallenübersicht" alt="Wireframe Besucher Hallenübersicht" /><figcaption>Wireframe Besucher Hallenübersicht</figcaption>
+</figure>
+<p><strong>Mobile Version:</strong></p>
+<p>In der Navigationsliste wird die Übersicht als aktiv makiert:</p>
+<figure>
+<img src="dokuImg/wireframe_mobile_visitor_selectedOverview.svg" title="Wireframe Besucher Messeübersicht" alt="Wireframe Besucher Messeübersicht" /><figcaption>Wireframe Besucher Messeübersicht</figcaption>
+</figure>
+<p>Der Content bereich wird wie folgt dargestellt:</p>
+<figure>
+<img src="dokuImg/wireframe_mobile_visitor_contentOverview.svg" title="Wireframe Besucher Messeübersicht" alt="Wireframe Besucher Messeübersicht" /><figcaption>Wireframe Besucher Messeübersicht</figcaption>
+</figure>
+<h6 id="auswahl-einer-halle">3.3.3.2.2 Auswahl einer Halle</h6>
+<p>Der Besucher kann sich aus der Liste der Hallen eine Halle auswählen und erhält dann eine Hallenübersicht. Diese Hallenübersicht beinhaltet ein Raster der Halle inklusive der Basisinfrastruktur (Restuarants, Toiletten, Flucht- und Rettungswege, Ein- und Ausgänge) sowie der Aussteller, welche der Messebetreibe zugelassen hat.</p>
+<p><strong>Desktop Version:</strong></p>
+<p>In der Navigationsliste wird die aktuell ausgewählte Halle farblich hervorgehoben.</p>
+<figure>
+<img src="dokuImg/wireframe_visitor_selectedHall.svg" title="Wireframe Besucher Halle" alt="Wireframe Besucher Halle" /><figcaption>Wireframe Besucher Halle</figcaption>
+</figure>
+<p>Der Contenbereich sieht wie folgt aus. Hierbei werden die flächen farblich von einander unterschieden, sodass Aussteller, Toiletten, Wege und Restaurants andere farben erhalten.</p>
+<figure>
+<img src="dokuImg/wireframe_visitor_contentHall.svg" title="Wireframe Besucher Hallenübersicht" alt="Wireframe Besucher Hallenübersicht" /><figcaption>Wireframe Besucher Hallenübersicht</figcaption>
+</figure>
+<p><strong>Mobile Version:</strong></p>
+<p>In der Navigationsliste wird die aktuelle Auswahl hervorgehoben.</p>
+<figure>
+<img src="dokuImg/wireframe_mobile_visitor_selectedHall.svg" title="Wireframe Besucher Halle Mobile" alt="Wireframe Besucher Halle Mobile" /><figcaption>Wireframe Besucher Halle Mobile</figcaption>
+</figure>
+<p>Der Contentbereich sieht wie folgt aus:</p>
+<figure>
+<img src="dokuImg/wireframe_mobile_visitor_contentHall.svg" title="Wireframe Besucher Hallenübersicht" alt="Wireframe Besucher Hallenübersicht" /><figcaption>Wireframe Besucher Hallenübersicht</figcaption>
+</figure>
+<p>Im Vergelich zum Contentberich auf dem Desktop wird in der mobilen Ansicht keine Raster dargestellt. Statt desen wird hier eine Tabelle mit Standnummern und Inforamtionen zum Stand (Aussteller, Toiletten und Restaurants) dargestellt. Flucht- und Rettungswege sowie Ein- und Ausgänge werden hierbei nicht brücksichtigt. Dies ist nötig, damit eine gute Nutzbarkeit auf mobilen Endgeräten gewährleistet werden kann.</p>
+<h6 id="auswahl-übersicht">3.3.3.2.3 Auswahl Übersicht</h6>
+<p>Der Besucher kann sich die Übersicht über die Messe wieder anzeigen lassen. Hier entsteht die selbe Benutzeroberfläche wie in <strong>3.3.3.2.1</strong></p>
+<h6 id="auswahl-zurück-1">3.3.3.2.4 Auswahl Zurück</h6>
+<p>Der Besucher kehrt zurück zur Messenübersicht und kann sich dort erneut eine Messe auswählen welche er betrachten möchte.</p>
+<h5 id="austeller-suchen">3.3.3.3 Austeller Suchen</h5>
+<p>In der Suche können Aussteller gefunden werden, welche auf Messen vertretten sind. Sollte eine bestimmte Messe vom Benutzer ausgewählt sein, wird die Suche nur innerhalb dieser Messe durchgeführt.</p>
+<p>Das Ergebnis der Suche wird als Tabelle dargestellt. In einer Spalte stehen die Austellernamen und in der anderen die Stand- und Hallenbezeichnung. Sollte bei der Suche keine Messe ausgewählt sein, wird die Information über die Messe ebenfalls in einer Tabellenspalte hinterlegt.</p>
+<figure>
+<img src="dokuImg/stateChart_search.png" title="State Chart Austellersuche" alt="StateChart Austellersuche" /><figcaption>StateChart Austellersuche</figcaption>
+</figure>
+<p><strong>Desktop Version:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_searchResult.svg" title="Wireframe Ausstellersuche" alt="Wireframe Ausstellersuche" /><figcaption>Wireframe Ausstellersuche</figcaption>
+</figure>
+<figure>
+<img src="dokuImg/wireframe_searchResult_without.svg" title="Wireframe Ausstellersuche" alt="Wireframe Ausstellersuche" /><figcaption>Wireframe Ausstellersuche</figcaption>
+</figure>
+<p><strong>Mobile Version:</strong></p>
+<figure>
+<img src="dokuImg/wireframe_mobile_searchResult.svg" title="Wireframe Ausstellersuche Mobile" alt="Wireframe Ausstellersuche Mobile" /><figcaption>Wireframe Ausstellersuche Mobile</figcaption>
+</figure>
+<figure>
+<img src="dokuImg/wireframe_mobile_searchResult.svg" title="Wireframe Ausstellersuche Mobile" alt="Wireframe Ausstellersuche Mobile" /><figcaption>Wireframe Ausstellersuche Mobile</figcaption>
+</figure>
+</body>
+</html>
